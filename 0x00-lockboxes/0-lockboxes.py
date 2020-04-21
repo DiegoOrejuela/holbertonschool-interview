@@ -2,35 +2,18 @@
 
 
 def canUnlockAll(boxes):
+    """You have n number of locked boxes in front of you. Each box is numbered
+    sequentially from 0 to n - 1 and each box may contain keys to the other
+    boxes. This method that determines if all the boxes can be opened.
 
-    if not validate_boxes(boxes):
-        return False
+    Return True if all boxes can be opened, else return False"""
+    if boxes == [] or boxes == [[]]:
+        return True
 
-    index = 0
-    check_boxes_queue = boxes[index]
-    unlocked_boxes = [index]
+    list_comparation = [0]
+    for box in range(len(boxes)):
+        for key in boxes[box]:
+            if key != box and key not in list_comparation:
+                list_comparation.append(key)
 
-    while index_inside_range(check_boxes_queue, index):
-        if index_inside_range(boxes, index):
-            box_index = check_boxes_queue[index]
-            if box_index not in unlocked_boxes:
-                box = boxes[box_index]
-                for box_key in box:
-                    if box_key not in check_boxes_queue:
-                        check_boxes_queue.append(box_key)
-                unlocked_boxes.append(box_index)
-        index += 1
-
-    return True if all_boxes_unlocked(boxes, unlocked_boxes) else False
-
-
-def validate_boxes(boxes):
-    return boxes is not None and boxes != [] and boxes[0] != []
-
-
-def index_inside_range(list, index):
-    return index < len(list)
-
-
-def all_boxes_unlocked(origin_boxes, unlocked_boxes):
-    return len(origin_boxes) == len(unlocked_boxes)
+    return True if len(list_comparation) == len(boxes) else False
