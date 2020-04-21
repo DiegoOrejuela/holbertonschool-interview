@@ -10,10 +10,15 @@ def canUnlockAll(boxes):
     if boxes == [] or boxes == [[]]:
         return True
 
+    all_boxes_empty = True
+
     list_comparation = [0]
     for box in range(len(boxes)):
         for key in boxes[box]:
+            all_boxes_empty = False
             if key != box and key not in list_comparation:
                 list_comparation.append(key)
 
+    if all_boxes_empty:
+        return True
     return True if len(list_comparation) == len(boxes) else False
