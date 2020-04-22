@@ -7,13 +7,12 @@ def canUnlockAll(boxes):
     boxes. This method that determines if all the boxes can be opened.
 
     Return True if all boxes can be opened, else return False"""
-    list_comparation = [0]
+    list_comparation = []
 
     for box in range(len(boxes)):
-        if boxes[box] == [] and box not in list_comparation:
-            list_comparation.append(box)
         for key in boxes[box]:
-            if key != box and key < len(boxes) and key not in list_comparation:
+            if key != box and key < len(boxes) and \
+               key != 0 and key not in list_comparation:
                 list_comparation.append(key)
 
-    return True if len(list_comparation) == len(boxes) else False
+    return True if len(list_comparation) == (len(boxes) - 1) else False
