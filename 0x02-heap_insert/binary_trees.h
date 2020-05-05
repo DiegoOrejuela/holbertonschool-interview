@@ -28,6 +28,9 @@ size_t binary_tree_height(const heap_t *tree);
 size_t binary_tree_size(const heap_t *tree);
 size_t binary_tree_expected_nodes(size_t tree_height);
 int _pow_recursion(int x, int y);
+heap_t *heap_tree_node();
+void update_root(heap_t **root, heap_t **new_node, heap_t **inserted_node, int value, size_t *removed_root);
+void insert_node(int direction, heap_t **root, heap_t **new_node, heap_t **inserted_node, int value, size_t *removed_root);
 
 /*Functions printing*/
 void binary_tree_print(const binary_tree_t *);
