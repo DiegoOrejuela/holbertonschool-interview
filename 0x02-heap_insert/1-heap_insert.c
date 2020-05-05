@@ -11,6 +11,7 @@ heap_t *heap_insert(heap_t **root, int value){
 
 	heap_t *new_node, *temp, *inserted_node, *node = *root;
 	size_t tree_height, tree_size, expected_nodes, expected_leaves, expected_later_nodes, current_leaves_last_level;
+	int removed_root = 0;
 
 	(void)temp;
 	new_node = malloc(sizeof(heap_t));
@@ -35,47 +36,48 @@ heap_t *heap_insert(heap_t **root, int value){
 			new_node->left = node->left;
 			new_node->right = node->right;
 			new_node->parent = node->parent;
-			new_node->n = node->n;
+			new_node->n = value;
 			value = node->n;
-			temp = node;
-			node = new_node;
-			inserted_node = new_node;
+			*root = new_node;
+			inserted_node = *root;
 			new_node = node;
 			new_node->left = NULL;
 			new_node->right = NULL;
 			new_node->parent = NULL;
+			removed_root = 1;
 		}
 
 		if (expected_nodes - tree_size == 0)
 		{
 			if (node->left){
-				heap_insert(&node, value);
+				inserted_node = heap_insert(&node->left, value);
 			} else {
 				new_node->n = value;
-				new_node->parent = node;
-				node->left = new_node;
-				inserted_node = new_node;
+				new_node->parent = *root;
+				(*root)->left = new_node;
+				if (!removed_root)
+					inserted_node = new_node;
 			}
 		} else {
 			expected_later_nodes = binary_tree_expected_nodes(tree_height - 1);
 			current_leaves_last_level = tree_size - expected_later_nodes;
 
-			if (current_leaves_last_level <= expected_leaves / 2) {
+			if (current_leaves_last_level < expected_leaves / 2) {
 				if (node->left){
-					heap_insert(&node, value);
+					inserted_node = heap_insert(&node->left, value);
 				} else {
 					new_node->n = value;
-					new_node->parent = node;
-					node->left = new_node;
+					new_node->parent = *root;
+					(*root)->left = new_node;
 					inserted_node = new_node;
 				}
 			} else {
 				if (node->right){
-					heap_insert(&node, value);
+					inserted_node = heap_insert(&node->right, value);
 				} else {
 					new_node->n = value;
-					new_node->parent = node;
-					node->right = new_node;
+					new_node->parent = *root;
+					(*root)->right = new_node;
 					inserted_node = new_node;
 				}
 			}
