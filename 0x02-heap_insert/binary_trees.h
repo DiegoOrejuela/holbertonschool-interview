@@ -23,6 +23,12 @@ typedef struct binary_tree_s binary_tree_t;
 
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 
+heap_t *heap_insert(heap_t **root, int value);
+size_t binary_tree_height(const heap_t *tree);
+size_t binary_tree_size(const heap_t *tree);
+size_t binary_tree_expected_nodes(size_t tree_height);
+int _pow_recursion(int x, int y);
+
 /*Functions printing*/
 void binary_tree_print(const binary_tree_t *);
 
