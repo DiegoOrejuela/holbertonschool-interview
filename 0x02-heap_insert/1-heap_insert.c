@@ -9,7 +9,7 @@
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new_node, *inserted_node, *temp;
+	heap_t *new_node, *inserted_node;
 	size_t tree_height, tree_size, expected_nodes, expected_leaves,
 	expected_later_nodes, current_leaves_last_level, removed_root = 0;
 
@@ -27,8 +27,9 @@ heap_t *heap_insert(heap_t **root, int value)
 		expected_leaves = _pow_recursion(2, tree_height);
 
 		if (value > (*root)->n){
-			/*update_root(root, &new_node, &inserted_node, value, &removed_root);*/
+			update_root(root, &new_node, &inserted_node, &value, &removed_root);
 
+			/*
 			new_node->left = (*root)->left;
 			new_node->right = (*root)->right;
 			new_node->parent = (*root)->parent;
@@ -46,6 +47,7 @@ heap_t *heap_insert(heap_t **root, int value)
 			new_node->right = NULL;
 			new_node->parent = NULL;
 			removed_root = 1;
+			*/
 		}
 
 		if (expected_nodes - tree_size == 0)
@@ -119,7 +121,7 @@ heap_t *heap_tree_node()
  *
  * Return: return a pointer to the new node, or NULL on failure.
  */
-void update_root(heap_t **root, heap_t **new_node, heap_t **inserted_node, int value, size_t *removed_root)
+void update_root(heap_t **root, heap_t **new_node, heap_t **inserted_node, int *value, size_t *removed_root)
 {
 	heap_t *temp;
 
@@ -130,8 +132,8 @@ void update_root(heap_t **root, heap_t **new_node, heap_t **inserted_node, int v
 		(*root)->left->parent = *new_node;
 	if ((*root)->right)
 		(*root)->right->parent = *new_node;
-	(*new_node)->n = value;
-	value = (*root)->n;
+	(*new_node)->n = *value;
+	*value = (*root)->n;
 	temp = *root;
 	*root = *new_node;
 	*inserted_node = *root;
