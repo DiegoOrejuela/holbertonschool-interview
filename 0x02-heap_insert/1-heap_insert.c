@@ -37,7 +37,7 @@ heap_t *heap_insert(heap_t **root, int value)
 				insert_node(1, &*root, &new_node, &inserted_node, value, removed_root);
 		}
 	}
-	return (inserted_node);
+	return (removed_root ? *root : inserted_node);
 }
 
 /**
