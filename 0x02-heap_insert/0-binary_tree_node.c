@@ -7,7 +7,6 @@
  *
  * Return: return a pointer to the new node, or NULL on failure.
  */
-
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
 	binary_tree_t *new_node;
@@ -25,13 +24,12 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 
 /**
  * binary_tree_expected_nodes - return the height of a node
- * @tree: pointer to binary tree
+ * @tree_height: pointer to binary tree
  *
  * Return: return the height of a node
  */
-
- size_t binary_tree_expected_nodes(size_t tree_height)
- {
+size_t binary_tree_expected_nodes(size_t tree_height)
+{
 	size_t i, expected_nodes;
 
 	expected_nodes = 0;
@@ -40,8 +38,8 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 		expected_nodes =  _pow_recursion(2, i) + expected_nodes;
 	}
 
-	return(expected_nodes);
- }
+	return (expected_nodes);
+}
 
 /**
  *_pow_recursion - returns the value of x raised to the power of y.
