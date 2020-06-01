@@ -7,12 +7,16 @@ http_status = {}
 
 
 def print_logs_formated(file_size, http_status):
+    """print_logs_formated"""
+
     print("File size: {}".format(file_size))
     for key in sorted(http_status):
         print("{}: {}".format(key, http_status[key]))
 
 
 def signal_handler(sig, frame):
+    """signal_handler"""
+
     print_logs_formated(file_size, http_status)
 
 
