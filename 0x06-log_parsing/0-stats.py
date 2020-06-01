@@ -28,7 +28,7 @@ def signal_handler(sig, frame):
 for index, line in enumerate(sys.stdin, 1):
     if line != "":
         reverted_splitted_line = line.rstrip().split(" ")
-        if len(reverted_splitted_line) == 9:
+        if len(reverted_splitted_line) >= 2:
             reverted_splitted_line.reverse()
             file_size += int(reverted_splitted_line[0])
             if reverted_splitted_line[1] in codes_status:
