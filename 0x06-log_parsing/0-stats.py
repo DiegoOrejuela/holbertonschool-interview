@@ -25,9 +25,9 @@ def signal_handler(sig, frame):
 
 
 for index, line in enumerate(sys.stdin, 1):
-    try:
-        if line != "":
-            reverted_splitted_line = line.rstrip().split(" ")
+    if line != "":
+        reverted_splitted_line = line.rstrip().split(" ")
+        if len(reverted_splitted_line) == 9:
             reverted_splitted_line.reverse()
             file_size += int(reverted_splitted_line[0])
             http_status.setdefault(int(reverted_splitted_line[1]), 0)
@@ -36,6 +36,5 @@ for index, line in enumerate(sys.stdin, 1):
             if index % 10 == 0:
                 print_logs_formated(file_size, http_status)
 
-            """signal.signal(signal.SIGINT, signal_handler)"""
-    except:
-        print_logs_formated(file_size, http_status)
+        signal.signal(signal.SIGINT, signal_handler)
+    print_logs_formated(file_size, http_status)
