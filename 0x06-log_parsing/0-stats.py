@@ -37,4 +37,4 @@ for index, line in enumerate(sys.stdin, 1):
                 print_logs_formated(file_size, http_status)
 
         signal.signal(signal.SIGINT, signal_handler)
-    print_logs_formated(file_size, http_status)
+print_logs_formated(file_size, http_status)
