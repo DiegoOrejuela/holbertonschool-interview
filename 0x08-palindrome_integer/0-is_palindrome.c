@@ -10,8 +10,8 @@ int is_palindrome(unsigned long n)
 	unsigned long reverse_n[1000];
 	int i, j;
 
-	if (n > 0 && n <= 9)
-		return (0);
+	if (n <= 9)
+		return (1);
 
 	for (i = 0; (n / 10) != 0; i++)
 	{
