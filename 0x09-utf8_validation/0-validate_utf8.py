@@ -23,5 +23,5 @@ def validUTF8(data):
             if not b.startswith('10'):
                 return False
         elif b[0] == '1':
-                successive_10 = len(b.split('0')[0]) - 1
+                successive_10 = len(b.split('0')[0])
     return True
