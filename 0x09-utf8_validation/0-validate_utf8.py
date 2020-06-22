@@ -17,7 +17,7 @@ def validUTF8(data):
 
     successive_10 = 0
     for b in data:
-        b = bin(b).replace('0b', '').rjust(8, '0')
+        b = bin(b).replace('0b', '').rjust(8, '0')[-8:]
         if successive_10 != 0:
             successive_10 -= 1
             if not b.startswith('10'):
