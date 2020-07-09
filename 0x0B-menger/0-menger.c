@@ -8,31 +8,31 @@
 
 void menger(int level)
 {
-	int _size, _height = 0, _width, _aux1, _aux2;
-	char _str;
+	int size, height = 0, width, aux1, aux2;
+	char str;
 
-	_size = pow(3, level);
+	size = pow(3, level);
 
-	while (_height < _size)
+	while (height < size)
 	{
 		width = 0;
-		while (_width < _size)
+		while (width < size)
 		{
-			_aux1 = _height;
-			_aux2 = _width;
-			_str = 35;
+			aux1 = height;
+			aux2 = width;
+			str = 35;
 
-			while (_aux1 > 0 || _aux2 > 0)
+			while (aux1 > 0 || aux2 > 0)
 			{
-				if (_aux1 % 3 == 1 && _aux2 % 3 == 1)
-					_str = 32;
-				_aux1 = _aux1 / 3;
-				_aux2 = _aux2 / 3;
+				if (aux1 % 3 == 1 && aux2 % 3 == 1)
+					str = 32;
+				aux1 = aux1 / 3;
+				aux2 = aux2 / 3;
 			}
-			printf("%c", _str);
-			_width++;
+			printf("%c", str);
+			width++;
 		}
 		printf("\n");
-		_height++;
+		height++;
 	}
 }
