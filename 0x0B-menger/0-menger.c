@@ -23,10 +23,10 @@ void menger(int level)
 	{
 		sponge_side_size  = (int) pow(3, sub_level);
 		sponge_area = sponge_side_size * sponge_side_size;
-
 		past_sponge_side_size = (int) pow(3, sub_level - 1);
 
 		temp_sponge = copy_sponge(sponge);
+		free(sponge);
 		sponge = malloc((sizeof(char) * sponge_area));
 
 		temp_j = j = 0;
@@ -44,6 +44,7 @@ void menger(int level)
 			}
 			sponge[i] = row != 2 || row_subsponge != 2 ? temp_sponge[j] : ' ';
 		}
+		free(temp_sponge);
 	}
 	print_sponge(sponge, sponge_area, sponge_side_size);
 }
@@ -67,7 +68,7 @@ char *copy_sponge(char *sponge)
 		sponge_copy[i] = sponge[i];
 	}
 
-	return (sponge);
+	return (sponge_copy);
 }
 
 /**
