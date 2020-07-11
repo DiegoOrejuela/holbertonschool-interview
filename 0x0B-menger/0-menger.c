@@ -7,10 +7,10 @@
  */
 void menger(int level)
 {
-	char *sponge = "#", *temp_sponge;
+	char *sponge = malloc(1), *temp_sponge;
 	int i, j, sub_level, sponge_area, past_sponge_side_size,
 		temp_j, iteration, sponge_side_size, row, row_subsponge;
-
+	sponge[0] = '#';
 	if (level < 0)
 		return;
 	if (level == 0)
@@ -18,7 +18,6 @@ void menger(int level)
 		printf("%s\n", sponge);
 		return;
 	}
-
 	for (sub_level = 1; sub_level <= level; sub_level++) /*level = 1*/
 	{
 		sponge_side_size  = (int) pow(3, sub_level);
@@ -26,8 +25,7 @@ void menger(int level)
 		past_sponge_side_size = (int) pow(3, sub_level - 1);
 
 		temp_sponge = copy_sponge(sponge);
-		free(sponge);
-		sponge = malloc((sizeof(char) * sponge_area));
+		sponge = realloc(sponge, sizeof(char) * sponge_area);
 
 		temp_j = j = 0;
 		iteration = row_subsponge = row = 1;
@@ -46,6 +44,7 @@ void menger(int level)
 		}
 		free(temp_sponge);
 	}
+	free(sponge);
 	print_sponge(sponge, sponge_area, sponge_side_size);
 }
 
