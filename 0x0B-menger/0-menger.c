@@ -7,15 +7,18 @@
  */
 void menger(int level)
 {
-	char *sponge = malloc(1), *temp_sponge;
+	char *sponge = calloc(2, 1), *temp_sponge = NULL;
 	int i, j, sub_level, sponge_area, past_sponge_side_size,
 		temp_j, iteration, sponge_side_size, row, row_subsponge;
 	sponge[0] = '#';
+	sponge[1] = '\0';
 	if (level < 0)
+	{free(sponge);
 		return;
+	}
 	if (level == 0)
-	{
-		printf("%s\n", sponge);
+	{printf("%c\n", sponge[0]);
+		free(sponge);
 		return;
 	}
 	for (sub_level = 1; sub_level <= level; sub_level++) /*level = 1*/
@@ -23,17 +26,15 @@ void menger(int level)
 		sponge_side_size  = (int) pow(3, sub_level);
 		sponge_area = sponge_side_size * sponge_side_size;
 		past_sponge_side_size = (int) pow(3, sub_level - 1);
-
 		temp_sponge = copy_sponge(sponge);
-		sponge = realloc(sponge, sizeof(char) * sponge_area);
-
+		free(sponge);
+		sponge = calloc((sizeof(char) * sponge_area) + 1, 1);
 		temp_j = j = 0;
 		iteration = row_subsponge = row = 1;
 		for (i = 0, j = 0; i < sponge_area; i++, j++)
 		{
 			if (i % past_sponge_side_size == 0 && i != 0)
-			{
-				iteration++;
+			{iteration++;
 				reset_iteration_past_sponge_size(i, &j, &temp_j,
 								 sponge_side_size, past_sponge_side_size);
 				manager_travel_on_rows(i, past_sponge_side_size,
@@ -44,8 +45,8 @@ void menger(int level)
 		}
 		free(temp_sponge);
 	}
-	free(sponge);
 	print_sponge(sponge, sponge_area, sponge_side_size);
+	free(sponge);
 }
 
 /**
@@ -57,10 +58,11 @@ void menger(int level)
  */
 char *copy_sponge(char *sponge)
 {
-	int i, length_sponge = strlen(sponge);
-	char *sponge_copy;
+	int i, length_sponge = 0;
+	char *sponge_copy = NULL;
 
-	sponge_copy = malloc(length_sponge);
+	length_sponge = strlen(sponge);
+	sponge_copy = calloc(length_sponge + 1, 1);
 
 	for (i = 0; i < length_sponge; i++)
 	{
