@@ -11,14 +11,15 @@
  */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *start_node,
-		*node_express = list->express,
+	skiplist_t *start_node, *node_express,
 		*previous_node = list;
-	int end_index,
-		size_list = lent_list(list);
+	int end_index, size_list;
 
 	if (!list)
 		return (NULL);
+
+	node_express = list->express;
+	size_list = lent_list(list);
 
 	for ( ; node_express; node_express = node_express->express)
 	{
