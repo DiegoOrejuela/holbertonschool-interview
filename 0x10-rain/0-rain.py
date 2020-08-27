@@ -33,17 +33,17 @@ def rain(walls):
                 spaces = []
                 previous_wall = wall
 
-            if wall < previous_wall:
+            # if wall < previous_wall:
 
-                if mayor == 0:
-                    mayor = max(walls[idx:])
+            #     if mayor == 0:
+            #         mayor = max(walls[idx:])
 
-                if wall >= mayor:
-                    retained += (wall * len(spaces)) - sum(spaces)
-                    mayor = 0
-                    spaces = []
-                    previous_wall = wall
-                    spaces.append(wall)
+            #     if wall >= mayor:
+            #         retained += (wall * len(spaces)) - sum(spaces)
+            #         mayor = 0
+            #         spaces = []
+            #         previous_wall = wall
+            #         spaces.append(wall)
 
         if wall != 0 and previous_wall == 0:
             previous_wall = wall
