@@ -64,8 +64,4 @@ def rain(walls):
         if wall != 0 and previous_wall == 0:
             previous_wall = wall
 
-        # there is a previous wall and in the current position there is no wall
-        if wall == 0 and previous_wall != 0:
-            spaces.append(wall)
-
     return retained
