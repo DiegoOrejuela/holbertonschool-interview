@@ -33,4 +33,4 @@ def rain(walls):
         if wall == 0 and previous_wall != 0:
             spaces.append(wall)
 
-    return retained
+    return retained if retained != 0 else 1
