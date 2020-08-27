@@ -38,10 +38,6 @@ def rain(walls):
                 if mayor == 0:
                     mayor = max(walls[idx:])
 
-                    if mayor == 0:
-                        retained += (wall * len(spaces)) - sum(spaces)
-                        break
-
                 if wall >= mayor:
                     retained += (wall * len(spaces)) - sum(spaces)
                     mayor = 0
