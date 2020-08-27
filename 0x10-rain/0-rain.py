@@ -43,8 +43,6 @@ def rain(walls):
                     mayor = 0
                     spaces = []
                     previous_wall = wall
-
-                if mayor > wall:
                     spaces.append(wall)
 
         if wall != 0 and previous_wall == 0:
